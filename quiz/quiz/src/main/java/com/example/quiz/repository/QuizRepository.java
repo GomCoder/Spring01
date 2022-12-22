@@ -1,8 +1,11 @@
 package com.example.quiz.repository;
 
 import com.example.quiz.entry.Quiz;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
 //Quiz 테이블: RepositoryImpl
 public interface QuizRepository extends CrudRepository<Quiz, Integer> {
+    @Query("SELECT id FROM quiz ORDER BY RANDOM() limit 1")
+    Integer getRandomId();
 }
